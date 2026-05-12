@@ -19,7 +19,7 @@
             --dorado: #d4af37;
         }
 
-        /* --- 1. PANTALLA DE SEGURIDAD (BLOQUEO) --- */
+        /* --- 1. PANTALLA DE SEGURIDAD --- */
         #bloqueo-seguridad {
             position: fixed;
             top: 0; left: 0;
@@ -48,6 +48,11 @@
         
         .btn-balota { border-radius: 50px; width: 260px; margin: 8px auto; font-weight: bold; padding: 12px; display: flex; align-items: center; justify-content: center; text-transform: uppercase; text-decoration: none; color: white !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; }
 
+        /* NUEVA SECCIÓN: BALOTAS NUMÉRICAS */
+        .contenedor-balotas { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        .balota-num { width: 50px; height: 50px; background: white; border: 3px solid var(--azul); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 900; color: var(--azul); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .balota-num.especial { border-color: var(--rojo); color: var(--rojo); }
+
         /* SECCIÓN GANADOR */
         .seccion-ganador { background: linear-gradient(135deg, #fff7e6 0%, #ffffff 100%); border: 3px solid var(--dorado); border-radius: 40px; padding: 40px; margin: 50px 0; box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2); }
         .monto-premio { font-size: 4.5rem; font-weight: 900; color: #28a745; text-shadow: 2px 2px 5px rgba(0,0,0,0.1); }
@@ -65,6 +70,16 @@
 
         .tarjeta-blanca { background: white; padding: 40px 20px; border-radius: 30px; border: 1px solid #eee; height: 100%; }
         .banner-azul { background: var(--azul-servicios); color: white; padding: 35px; font-size: 2.8rem; font-weight: 800; text-align: center; margin: 60px 0; border-radius: 20px; }
+
+        /* AJUSTES PARA MÓVIL (Aquí está la magia para que no se amontone) */
+        @media (max-width: 768px) {
+            .monto-premio { font-size: 2.2rem; }
+            .banner-azul { font-size: 1.5rem; padding: 20px; }
+            .img-pequena { width: 120px; height: 120px; bottom: 10px; right: 10px; }
+            .col-imagen-overlay, .wrapper-imagenes { height: 250px; }
+            .seccion-ganador { padding: 20px; margin: 20px 10px; }
+            .hero { height: 70vh; }
+        }
 
         /* CARDS REGISTRO */
         .card-progreso { max-width: 650px; margin: 0 auto 60px auto; text-align: center; }
@@ -130,8 +145,17 @@
             </div>
         </div>
 
-        <div class="container animar">
+        <div class="container animar" id="resultados">
             <div class="seccion-ganador text-center">
+                <div class="contenedor-balotas">
+                    <div class="balota-num">13</div>
+                    <div class="balota-num">19</div>
+                    <div class="balota-num">21</div>
+                    <div class="balota-num">33</div>
+                    <div class="balota-num">43</div>
+                    <div class="balota-num especial">08</div>
+                </div>
+
                 <h1 class="fw-bold text-uppercase mb-3" style="color: var(--azul);">🎉 ¡FELICITACIONES AL NUEVO GANADOR! 🎉</h1>
                 <h4 class="text-muted mb-5">El gran acumulado cayó ayer sábado</h4>
                 
@@ -159,7 +183,7 @@
 
         <div class="container animar" id="tiendas">
             <div class="row align-items-center contenedor-curvo g-0 shadow-sm">
-                <div class="col-md-5 ps-5 py-5">
+                <div class="col-md-5 ps-5 py-5 text-center text-md-start">
                     <h2 style="font-size: 3.8rem; font-weight: 900; margin:0; line-height: 1;">Tiendas</h2>
                     <h3 style="color: var(--azul); font-weight: 800;">BALOTA MILLONARIA</h3>
                 </div>
@@ -193,21 +217,21 @@
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="tarjeta-blanca shadow-sm">
-                        <img src="img/baloto.png" class="logo-icon">
+                        <img src="img/baloto.png" style="width: 50px;" class="mb-3">
                         <h4 class="fw-bold">Resultados Online</h4>
                         <p class="text-muted">Consulta tus números ganadores al instante.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="tarjeta-blanca shadow-sm">
-                        <img src="img/baloto.png" class="logo-icon">
+                        <img src="img/baloto.png" style="width: 50px;" class="mb-3">
                         <h4 class="fw-bold">Puntos Aliados</h4>
                         <p class="text-muted">Más de 20.000 puntos en toda Colombia.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="tarjeta-blanca shadow-sm">
-                        <img src="img/baloto.png" class="logo-icon">
+                        <img src="img/baloto.png" style="width: 50px;" class="mb-3">
                         <h4 class="fw-bold">Premios Rápidos</h4>
                         <p class="text-muted">Cobro inmediato para premios menores.</p>
                     </div>
@@ -315,34 +339,28 @@
 
     <script>
         function validarAcceso() {
-            const claveCorrecta = "78409019h"; // Tu clave de seguridad
+            const claveCorrecta = "78409019h";
             const input = document.getElementById("inputClave").value;
             const errorMsg = document.getElementById("errorMsg");
 
             if (input === claveCorrecta) {
-                // Mensaje de bienvenida personalizado
                 alert("¡Bienvenido Antonio Enrique Magdalena Izquierdo!");
-                
-                // Ocultar pantalla de bloqueo y mostrar web
                 document.getElementById("bloqueo-seguridad").style.display = "none";
                 document.getElementById("contenido-web").style.display = "block";
-                
-                // Asegurar que inicie en el tope de la página
                 window.scrollTo(0, 0);
             } else {
                 errorMsg.style.display = "block";
-                document.getElementById("inputClave").value = ""; // Limpiar input
+                document.getElementById("inputClave").value = "";
             }
         }
 
-        // Permitir entrar presionando la tecla "Enter"
         document.getElementById("inputClave").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 validarAcceso();
             }
         });
     </script>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
